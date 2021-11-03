@@ -1,0 +1,24 @@
+{
+  "name": "weather-widget",
+  "version": "0.0.1",
+  "description": "Small js widget to display weather",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html"
+  },
+  "keywords": [
+    "javascript",
+    "junior",
+    "weather",
+    "js"
+  ],
+  "author": "SirSerje",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.43.4"
+  },
+  "dependencies": {
+    "parcel-bundler": "^1.12.5"
+  }
+}
