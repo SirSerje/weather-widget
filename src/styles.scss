@@ -1,3 +1,32 @@
 .root {
   border: 1px dashed darkgray;
 }
+
+.widget {
+  // border: 1px solid red;
+}
+
+.grid {
+ display: flex;
+ flex-direction: row;
+ margin-top: 120px;
+ margin-left: 120px;
+}
+.day {
+  padding: 10px;
+  border-radius: 5px;
+  
+  margin-left: 5px;
+margin-right: 5px;
+
+  width: 100px;
+  border: 1px solid lightgray;
+
+  .hi {
+    color: red
+  }
+
+  .low {
+    color:blue
+  }
+}
