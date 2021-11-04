@@ -1,38 +1,47 @@
-import "./normalize.css";
-import "./styles.scss";
-import weatherData from "./data";
-import { getRoot, getGrid } from "./aceessors";
-import { renderDays } from './days'
+import './styles/normalize.css';
+import './styles/styles.scss';
+import './styles/font.scss';
+import weatherData from './data';
+import { getRoot, getGrid, getUpper } from './aceessors';
+import { renderDays } from './components/days';
+import { getCurrentDay } from './date';
+import EventObserver from './EventObserver';
+import { renderTime } from './components/clock';
 
 
-/*
- { day: "Wed", hi: 13, low: 2 },
-    { day: "Thu", hi: 8, low: 6 },
-    { day: "Fri", hi: -1, low: -5 },
-    { day: "Sat", hi: -1, low: -5 },
-    { day: "Sun", hi: -1, low: -5 },
-    { day: "Mon", hi: -1, low: -5 },
-    { day: "Tue", hi: -1, low: -5 },
-*/
-function getCurrentDay() {
-  const days = ['Mon', 'Tue', "wed", "Thu", "Fri", "Sat", "Sun"]
-  const currentDay = new Date().getDay()
-  return days[currentDay-1]
+const observer = new EventObserver();
+
+function renderClock() {
+  getUpper().innerHTML= '';
+  getUpper().append(renderTime());
 }
+
+observer.subscribe(renderClock);
+
+setInterval(() => {
+  observer.broadcast();
+}, 1000);
+
 
 function init() {
-  const { forecast } = weatherData
-  const currentDay = getCurrentDay()
+  const { forecast } = weatherData;
+  const currentDay = getCurrentDay();
   const renderedDays = renderDays(forecast, currentDay);
 
-  getRoot().innerHTML = `<div id="ww" class="widget common">
-  <div id="grid" class="grid">
+  getRoot().innerHTML = `
+  <div id="ww" class="widget common">
+
+    <div class="upper">
     </div>
-  </div>`
-  getGrid().append(renderedDays)
-  const element = document.getElementById("ww")
-  
-  
+
+    <div class="lower">
+      <div id="grid" class="grid">
+      </div>
+    </div>
+    
+  </div>`;
+  renderClock();
+  getGrid().append(renderedDays);
 }
 
-init()
+init();
