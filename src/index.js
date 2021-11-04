@@ -7,10 +7,9 @@ import { renderDays } from './components/days';
 import { getCurrentDay } from './date';
 import EventObserver from './EventObserver';
 import { renderTime } from './components/clock';
-
+import { fetchWeather } from './request';
 
 const observer = new EventObserver();
-
 function renderClock() {
   getUpper().innerHTML= '';
   getUpper().append(renderTime());
@@ -45,3 +44,8 @@ function init() {
 }
 
 init();
+
+// eslint-disable-next-line no-undef
+fetchWeather(process.env.API_KEY).then(i => {
+  console.log(i);
+});
