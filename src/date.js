@@ -4,8 +4,14 @@ export function getCurrentDay() {
   return days[currentDay-1];
 }
 
+function humanize(i) {
+  if(typeof i !== 'number') {
+    console.warn('humanize() recieves not a number value');
+  }
+  return i<10 ? `0${i}` : i;
+}
 export function getTime() {
   const time = new Date();
-  return `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`;
+  return `${humanize(time.getHours())}:${humanize(time.getMinutes())}:${humanize(time.getSeconds())}`;
 }
 
