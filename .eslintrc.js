@@ -25,6 +25,7 @@ module.exports = {
     'semi': [
       'error',
       'always'
-    ]
+    ],
+    'key-spacing': [2, {'beforeColon': true, 'afterColon': true}]
   }
 };
