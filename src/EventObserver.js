@@ -1,3 +1,21 @@
+export function testObserver() {
+  let observers = [];
+  function subscribe (fn) {
+    observers.push(fn);
+  }
+
+  function unsubscribe (fn) {
+    observers = this.observers.filter(subscriber => subscriber !== fn);
+  }
+
+  function broadcast (data) {
+    observers.forEach(subscriber => subscriber(data));
+  }
+  return ({
+    subscribe, unsubscribe, broadcast
+  });
+}
+
 class EventObserver {
   constructor () {
     this.observers = [];

@@ -3,25 +3,46 @@
 $max-width: 600px;
 $font-light: 100;
 
-.test1 {
-  font-size: 64px;
-  color: $Winter-Sunset-1-hex;
+.display-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.padding-top {
+  padding-top: 21px;
+}
+
+.light-font {
+  font-weight: 100;
+}
+
+.time {
+  font-size: 60px;
+  color: $c-1-hex;
 }
 
 .upper {
+  display: flex;
+  justify-content: space-between;
 }
+
 .lower {
   display: flex;
   justify-content: center;
 }
+* {
+  color: $c-1-hex;
+}
 
 #root {
-  border: 1px solid $Winter-Sunset-5-hex;
-  margin: 5px;
-  margin: 5px;
+  border: 1px solid $c-2-hex-hex-10;
+  margin: 15px;
+  margin: 15px;
+  border-radius: 5px;
 }
 
 .widget {
+  padding: 15px;
   flex-direction: column;
   height: 300px;
   display: flex;
@@ -35,6 +56,7 @@ $font-light: 100;
   width: 100%;
   display: flex;
   justify-content: space-between;
+  overflow: hidden;
 }
 
 .day {
@@ -44,26 +66,29 @@ $font-light: 100;
   align-items: center;
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid $Winter-Sunset-2-hex-20;
+  border: 1px solid $c-2-hex-hex-20;
+
+  pointer-events: none;
+
 
 .temperature {
   display: inherit;
   flex-direction: row;
 
   .hi {
-    color: $Winter-Sunset-5-hex;
+    color: $c-5-hex;
   }
 
   .low {
-    color:$Winter-Sunset-1-hex;
+    color:$c-1-hex;
   }
 }
   p {
     font-weight: $font-light;
-    color: $Winter-Sunset-1-hex-50;
+    color: $c-1-hex-50;
   }
 }
 
 .highlighted {
- background: $Winter-Sunset-2-hex-10;
+ background: $c-2-hex-hex-10;
 }

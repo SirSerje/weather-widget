@@ -1,9 +1,14 @@
 import image from '../images/cloudy.png';
 const CELSIUM = '°';
+const DAYS_TO_DISPLAY = 14;
 
 export function renderDays(data, currentDay) {
   let fragment = new DocumentFragment();
-  data.forEach((day) => {
+  
+  data.forEach((day, idx) => {
+    if(idx > DAYS_TO_DISPLAY-1) {
+      return;
+    }
     let div = document.createElement('div');
     div.setAttribute('class', 'day');
     div.setAttribute('id', day.day.toLowerCase());
@@ -25,3 +30,12 @@ export function renderDays(data, currentDay) {
   
   return fragment;
 }
+
+
+/* 
+function reportWindowSize(e) {
+  console.log(`${e.target.innerWidth} x ${e.target.innerHeight}`);
+}
+window.addEventListener('resize', reportWindowSize);
+
+ */
