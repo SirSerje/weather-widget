@@ -5,23 +5,16 @@ export function renderTime() {
   const el = document.createElement('div');
   el.innerText = getTime();
   el.setAttribute('class', 'time');
+  el.setAttribute('id', 'clock');
   
   return el;
 }
 
 export function renderClock() {
-  getUpper().innerHTML= `
-  <div class="light-font padding-top">
-    <span>location</span>
-    <h2>Kiev</h2>
-  </div>
-  
-  <div class="display-column padding-top light-font">
-    <span>Humidity: <b id="hum">58%</b></span>
-    <span>Feels Like: <b>12</b></span>
-    <span>Wind: <b>WE 15ms</b></span>
-  </div>
-  `;
-  
-  getUpper().append(renderTime());
+  const clockSelector = document.getElementById('clock');
+  if(clockSelector) {
+    clockSelector.innerText = getTime();
+  } else {
+    getUpper().append(renderTime());
+  }
 }

@@ -21,23 +21,3 @@ class EventObserver {
 }
 
 export default EventObserver;
-
-// you can implement observer even without classes!
-function functionalObserver() {
-  let observers = [];
-  function subscribe (fn) {
-    observers.push(fn);
-  }
-
-  function unsubscribe (fn) {
-    observers = this.observers.filter(subscriber => subscriber !== fn);
-  }
-
-  function broadcast (data) {
-    observers.forEach(subscriber => subscriber(data));
-  }
-
-  return ({
-    subscribe, unsubscribe, broadcast
-  });
-}
