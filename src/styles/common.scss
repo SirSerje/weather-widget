@@ -1,0 +1,15 @@
+@import "./colors.scss";
+a {
+  user-select: none;
+  background-color: $c-5-hex;
+  color: white;
+  padding: 2px 4px;
+  position: relative;
+  text-decoration: none;
+  font-size: 8px;
+}
+
+a:hover {
+  background-color: $c-4-hex;
+  cursor: pointer;
+}

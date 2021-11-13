@@ -1,0 +1,96 @@
+@import './colors.scss';
+
+$max-width: 600px;
+$font-light: 100;
+
+.display-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.padding-top {
+  padding-top: 21px;
+}
+
+.light-font {
+  font-weight: 100;
+}
+
+.time {
+  font-size: 60px;
+  color: $c-1-hex;
+}
+
+.upper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.lower {
+  display: flex;
+  justify-content: center;
+}
+* {
+  color: $c-1-hex;
+}
+
+#root {
+  border: 1px solid $c-2-hex-hex-10;
+  margin: 15px;
+  margin: 15px;
+  border-radius: 5px;
+}
+
+.widget {
+  padding: 15px;
+  flex-direction: column;
+  height: 300px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  align-content: stretch;
+}
+
+.grid {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.day {
+  * {
+    pointer-events: none;
+  }
+
+  min-width: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid $c-2-hex-hex-20;
+
+  .temperature {
+    display: inherit;
+    flex-direction: row;
+
+    .hi {
+      color: $c-5-hex;
+    }
+
+    .low {
+      color:$c-1-hex;
+    }
+  }
+
+  p {
+    font-weight: $font-light;
+    color: $c-1-hex-50;
+  }
+}
+
+.highlighted {
+ background: $c-2-hex-hex-10;
+}
