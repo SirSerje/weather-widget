@@ -1,6 +1,7 @@
 import image from '../images/cloudy.png';
+
 const CELSIUM = '°';
-const DAYS_TO_DISPLAY = 14;
+const DAYS_TO_DISPLAY = 8;
 
 export function renderDays(data, currentDay) {
   let fragment = new DocumentFragment();
@@ -11,7 +12,7 @@ export function renderDays(data, currentDay) {
     }
     let div = document.createElement('div');
     div.setAttribute('class', 'day');
-    div.setAttribute('id', day.day.toLowerCase());
+    div.setAttribute('id', idx);
 
     if(day.day.toLowerCase() === currentDay.toLowerCase()) {
       div.classList.add('highlighted');

@@ -60,6 +60,10 @@ $font-light: 100;
 }
 
 .day {
+  * {
+    pointer-events: none;
+  }
+
   min-width: 90px;
   display: flex;
   flex-direction: column;
@@ -68,21 +72,19 @@ $font-light: 100;
   border-radius: 5px;
   border: 1px solid $c-2-hex-hex-20;
 
-  pointer-events: none;
+  .temperature {
+    display: inherit;
+    flex-direction: row;
 
+    .hi {
+      color: $c-5-hex;
+    }
 
-.temperature {
-  display: inherit;
-  flex-direction: row;
-
-  .hi {
-    color: $c-5-hex;
+    .low {
+      color:$c-1-hex;
+    }
   }
 
-  .low {
-    color:$c-1-hex;
-  }
-}
   p {
     font-weight: $font-light;
     color: $c-1-hex-50;
