@@ -8,10 +8,12 @@ import { renderDays } from './components/days';
 import { getCurrentDay } from './date';
 import EventObserver from './EventObserver';
 import { renderClock } from './components/clock';
-
+import { getCityName } from './aceessors';
+import { requestData } from './request';
 // eslint-disable-next-line no-unused-vars
 let mainObserverInterval;
 const observer = new EventObserver();
+const networkObserver = new EventObserver();
 
 function init() {
   const { forecast } = weatherData;
@@ -24,7 +26,7 @@ function init() {
     
     <div class="light-font padding-top">
     <span>location</span>
-    <h2>Kiev</h2>
+    <h2 id="cityname">Kiev</h2>
   </div>
   
   <div class="display-column padding-top light-font">
@@ -52,14 +54,31 @@ function clickHandler(event) {
   }
 }
 
+
+function getDataFromServer({ timezone }) {
+  getCityName().innerText = timezone;
+}
+
+function handleError() {
+  getCityName().innerText = '⚠️';
+}
+
 // https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event
 window.addEventListener('DOMContentLoaded', () => {
   console.log('DOM fully loaded and parsed');
   mainObserverInterval = setInterval(() => observer.broadcast(), 1000);
   observer.subscribe(renderClock);
+  networkObserver.subscribe(getDataFromServer);
   init();
+  
   getGrid().addEventListener('click', clickHandler);
+
+  requestData().then(i => {
+    networkObserver.broadcast(i);
+  }).catch(handleError);
 });
+
+
 
 window.addEventListener('unload', () => {
   clearInterval(mainObserverInterval);

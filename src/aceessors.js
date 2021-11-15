@@ -7,3 +7,7 @@ export function getGrid() {
 export function getUpper() {
   return document.getElementsByClassName('upper')[0];
 }
+
+export function getCityName() {
+  return document.getElementById('cityname');
+}
