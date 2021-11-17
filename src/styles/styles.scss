@@ -78,10 +78,13 @@ $font-light: 100;
 
     .hi {
       color: $c-5-hex;
+      margin-right: 2px;
     }
 
     .low {
       color:$c-1-hex;
+      margin-left: 2px;
+
     }
   }
 

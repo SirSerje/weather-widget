@@ -1,7 +1,15 @@
+const days = ['Mon', 'Tue', 'wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV', 'DEC'];
+
 export function getCurrentDay() {
-  const days = ['Mon', 'Tue', 'wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-  const currentDay = new Date() .getDay();
+  const currentDay = new Date().getDay();
   return days[currentDay-1];
+}
+export function humanizedMonth(num) {
+  return months[num];
+}
+export function humanizedDay(num) {
+  return days[num];
 }
 
 function humanize(i) {
