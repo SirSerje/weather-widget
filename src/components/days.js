@@ -16,12 +16,12 @@ const imageToWeather = {
 const CELSIUM = '°';
 const DAYS_TO_DISPLAY = 8;
 
-export function renderDays(data, currentDay) {
+export function renderDays(data, daysToRender = DAYS_TO_DISPLAY) {
   const a = new Date();
   let fragment = new DocumentFragment();
   
   data.forEach((day, idx) => {
-    if(idx > DAYS_TO_DISPLAY-1) {
+    if(idx > daysToRender) {
       return;
     }
     let div = document.createElement('div');
@@ -29,9 +29,9 @@ export function renderDays(data, currentDay) {
     div.setAttribute('id', day.dt);
 
     const isToday = day.date.getFullYear() === a.getFullYear() && day.date.getMonth()===a.getMonth() && day.date.getDate()===a.getDate();
-    console.log(isToday);
-    if(isToday)
+    if(isToday) {
       div.classList.add('highlighted');
+    }
     div.innerHTML = `
     <p>
       <span style="font-size: 10px;">${day.month}</span>

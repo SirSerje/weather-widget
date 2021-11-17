@@ -5,12 +5,12 @@ import './styles/font.scss';
 import WeatherData from './data';
 import { getRoot, getGrid } from './aceessors';
 import { renderDays } from './components/days';
-import { getCurrentDay } from './date';
 import EventObserver from './EventObserver';
 import { renderClock } from './components/clock';
 import { getCityName } from './aceessors';
 import { requestData } from './request';
 import { responseAdapter, kToC } from './responseAdapter';
+import { degToCompass, mileToMeters } from './utils';
 
 // eslint-disable-next-line no-unused-vars
 let mainObserverInterval;
@@ -43,15 +43,6 @@ function init() {
   </div>`;
   renderClock();
 }
-function degToCompass(num) {
-  var val = Math.floor((num / 22.5) + 0.5);
-  var arr = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
-  return arr[(val % 16)];
-}
-
-function mileToMeters (miles) {
-  return Math.round(miles/1.61);
-}
 
 
 function clickHandler(event) {
@@ -69,7 +60,7 @@ function handleResponse(i) {
   const { timezone } = i;
   weatherData.updateData(responseAdapter(i)); 
   getCityName().innerText = timezone;
-  const renderedDays = renderDays(responseAdapter(i), getCurrentDay());
+  const renderedDays = renderDays(responseAdapter(i));
   getGrid().append(renderedDays);
 }
 
