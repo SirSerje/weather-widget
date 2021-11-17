@@ -4,9 +4,10 @@
   "description": "Small js widget to display weather",
   "main": "index.html",
   "scripts": {
-    "start": "parcel index.html --open",
+    "start": "parcel ./src/index.html --open",
     "lint": "eslint --ext .js src -c .eslintrc.js --fix",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html",
+    "postbuild": "workbox generateSW"
   },
   "keywords": [
     "javascript",
@@ -18,7 +19,8 @@
   "license": "ISC",
   "devDependencies": {
     "eslint": "^8.1.0",
-    "sass": "^1.43.4"
+    "sass": "^1.43.4",
+    "workbox-cli": "^6.4.1"
   },
   "dependencies": {
     "images": "^3.2.3",
