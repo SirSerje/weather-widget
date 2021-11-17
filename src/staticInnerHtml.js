@@ -5,6 +5,7 @@ export const ROOT_DEFAULT = `
   <div class="light-font padding-top">
   <span>location</span>
   <h2 id="cityname">Kiev</h2>
+  <button id="clear">clear data</button>
 </div>
 
 <div class="display-column padding-top light-font">

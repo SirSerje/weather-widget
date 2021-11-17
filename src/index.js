@@ -13,11 +13,14 @@ import { responseAdapter, kToC } from './responseAdapter';
 import { degToCompass, mileToMeters } from './utils';
 import { ROOT_DEFAULT } from './staticInnerHtml';
 import { getCoordinates } from './coords';
+import LSWrapper from './LSWrapper';
+
 
 let mainObserverInterval;
 const observer = new EventObserver();
 const networkObserver = new EventObserver();
 const weatherData = new WeatherData();
+const ls = new LSWrapper('coordinates');
 
 function clickHandler(event) {
   if(event.target.className.split(' ').includes('day')) {
@@ -56,11 +59,22 @@ window.addEventListener('DOMContentLoaded', () => {
   // add listener for grid with days  
   getGrid().addEventListener('click', clickHandler);
   // check coordinates, then request data, than draw days
-  getCoordinates().then(({lat, lon}) => {
+  const savedCoordinates = ls.get();
+  if(savedCoordinates) {
+    const { lat, lon } = savedCoordinates;
     requestData(lat,lon).then(i => {
       networkObserver.broadcast(i);
     }).catch(handleError);
-  });
+  } else {
+    getCoordinates().then(({lat, lon}) => {
+      ls.put({lat, lon});
+      requestData(lat,lon).then(i => {
+        networkObserver.broadcast(i);
+      }).catch(handleError);
+    });
+  }
+  // handle clear button
+  document.getElementById('clear').addEventListener('click', () => ls.clearAll());
 });
 
 window.addEventListener('unload', () => {
